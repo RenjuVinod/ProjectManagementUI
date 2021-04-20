@@ -15,23 +15,21 @@ import { LoginComponent } from './User/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  {path : '', component : LoginComponent},
-  { path: 'home', component: HomeComponent },
+  { path: '', component: LoginComponent },
+  { path: 'Login', component: LoginComponent },
+  { path: 'Home', component: HomeComponent },
   { path: 'User', component: UserHomeComponent },
-  { path: 'User/home', component: UserHomeComponent },
-  { path: 'User/create', component: UserCreateComponent },
-  { path: 'User/update/:productId', component: UserUpdateComponent },
+  { path: 'UserCreate', component: UserCreateComponent },
+  { path: 'UserUpdate', component: UserUpdateComponent },
   { path: 'Project', component: ProjectHomeComponent },
-  { path: 'Project/home', component: ProjectHomeComponent },
-  { path: 'Project/create', component: ProjectCreateComponent },
-  { path: 'Project/update/:productId', component: ProjectUpdateComponent },
+  { path: 'ProjectCreate', component: ProjectCreateComponent },
+  { path: 'ProjectUpdate', component: ProjectUpdateComponent },
   { path: 'Task', component: TaskHomeComponent },
-  { path: 'Task/home', component: TaskHomeComponent },
-  { path: 'Task/create', component: TaskCreateComponent },
-  { path: 'Task/update/:productId', component: TaskUpdateComponent } 
+  { path: 'TaskCreate', component: TaskCreateComponent },
+  { path: 'TaskUpdate', component: TaskUpdateComponent } 
 ];
 
 @NgModule({
@@ -51,7 +49,7 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes),FormsModule,HttpClientModule],
+    RouterModule.forRoot(routes),FormsModule,HttpClientModule,NgbModule],
   exports: [RouterModule],
   providers: [],
   bootstrap: [AppComponent]
