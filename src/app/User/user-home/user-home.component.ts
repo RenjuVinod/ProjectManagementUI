@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserServiceService } from '../user-service.service';
+import { User } from '../user'
 
 @Component({
   selector: 'app-user-home',
@@ -7,20 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserHomeComponent implements OnInit {
 
-  public users = [] as any;
+  public users : User[] = [];
 
-  constructor() {
-    this.users = [
-      { id: 1, firstname: "Renju", lastname: "Vinod", email: "renju.vinod@gmail.com" },
-      { id: 2, firstname: "Vinod", lastname: "Julian", email: "vinod.julian@gmail.com" }
-    ]
+  constructor(private userService:UserServiceService,private router:Router) {
+    }
+
+  ngOnInit() {
+    this.userService.getAll().subscribe((data: User[])=>{
+      console.log(data);
+      this.users = data;
+    })  
   }
 
-  ngOnInit(): void {
+  onSelected(users :User)
+  {
+    this.userService.updateUserCollection = users;
+    this.router.navigate(['UserUpdate']);
   }
-
-  trackByuserCode(users: any): number{
-    return users.id;
-  }
-
 }

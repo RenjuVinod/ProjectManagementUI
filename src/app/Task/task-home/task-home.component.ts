@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { TaskServiceService } from '../task-service.service';
+import { Task } from '../task'
 
 @Component({
   selector: 'app-task-home',
@@ -7,20 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TaskHomeComponent implements OnInit {
 
-  public tasks = [] as any;
+  public tasks : Task[] = [];
 
-  constructor() {
-    this.tasks = [
-      { id: 1, projectid: 1, userid: 1, details: "Task 1", status: "New" },
-      { id: 2, projectid: 2, userid: 2, details: "Task 2", status: "InProgress" }
-    ]
+  constructor(private taskService:TaskServiceService,private router:Router) {
+    }
+
+  ngOnInit() {
+    this.taskService.getAll().subscribe((data: Task[])=>{
+      console.log(data);
+      this.tasks = data;
+    })  
   }
 
-  ngOnInit(): void {
+  onSelected(tasks :Task)
+  {
+    this.taskService.updateTaskCollection = tasks;
+    this.router.navigate(['TaskUpdate']);
   }
-
-  trackBytaskCode(tasks: any): number{
-    return tasks.id;
-  }
+  
 
 }

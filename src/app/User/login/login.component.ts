@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
+import { UserServiceService } from '../user-service.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +11,8 @@ import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService:UserServiceService,
+    private router:Router) { }
 
   ngOnInit(): void {
   }

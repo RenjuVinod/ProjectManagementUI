@@ -5,21 +5,19 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Project</th>
-                <th scope="col">Details</th>
-                <th scope="col"></th>
+                <th>Id</th>
+                <th>Project Name</th>
+                <th>Details</th>
+                <th>CreatedOn</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let projects of projects; trackBy: projects.id">
+            <tr *ngFor="let projects of projects;" (click)="onSelected(tasks)">
                 
-                <td scope="row">{{ projects.id  }}</td>
-                <td>{{ projects.projectname  }}</td>
-                <td>{{ projects.details  }}</td>          
-                <td>
-                    <button class="btn btn-outline-primary" routerLink="../ProjectUpdate">Update</button>
-                </td>
+                <td>{{ projects.id }}</td>
+                <td>{{ projects.name }}</td>
+                <td>{{ projects.detail }}</td>
+                <td>{{projects.createdOn | date :'dd/MM/yyyy'}}</td>
             </tr>
         </tbody>
     </table>
