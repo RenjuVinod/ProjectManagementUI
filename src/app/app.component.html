@@ -1,13 +1,18 @@
 <!-- nav -->
 <nav class="navbar navbar-expand navbar-dark bg-dark">
   <a class="navbar-brand" href="#">Project Management</a>
-  <div class="navbar-nav mr-auto mt-2 mt-lg-0">
+  <div class="navbar-nav mr-auto mt-2 mt-lg-0" *ngIf="loggedin()">
     <a class="nav-item nav-link" routerLink="Home">Home</a>
     <a class="nav-item nav-link" routerLink="User">User</a>
     <a class="nav-item nav-link" routerLink="Project">Project</a>
     <a class="nav-item nav-link" routerLink="Task">Task</a>
   </div>
-  <button type="submit" class="btn btn-link navbar-btn navbar-link my-2 my-sm-0" routerLink="Login">Logout</button>
+  <span class="navbar-text" *ngIf="loggedin()">
+    {{username}}
+  </span>
+&nbsp;
+  <button type="submit" class="btn btn-bd-download d-lg-inline-block my-2 my-md-0 ms-md-3" *ngIf="loggedin()"
+    (click)="onLogout()" routerLink="Login">Logout</button>
 </nav>
 
 <!-- main app container -->

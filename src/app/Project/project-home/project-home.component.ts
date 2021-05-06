@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ProjectServiceService } from '../project-service.service';
+import { Project } from '../project'
 
 @Component({
   selector: 'app-project-home',
@@ -7,20 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectHomeComponent implements OnInit {
 
-  public projects = [] as any;
+  public projects : Project[] = [];
 
-  constructor() {
-    this.projects = [
-      { id: 1, projectname: "Project 1", details: "This is project 1" },
-      { id: 2, projectname: "Project 2", details: "This is project 2" }
-    ]
+  constructor(private projectService:ProjectServiceService,private router:Router) {
+    }
+
+  ngOnInit() {
+    if(!localStorage.getItem('token'))
+    {
+      this.router.navigate(['Login']);
+    }
+    this.projectService.getAll().subscribe((data: Project[])=>{
+      console.log(data);
+      this.projects = data;
+    }) 
   }
 
-  ngOnInit(): void {
-  }
-
-  trackByprojectsCode(projects: any): number{
-    return projects.id;
+  onSelected(project :Project)
+  {
+    this.projectService.updateProjectCollection = project;
+    this.router.navigate(['ProjectUpdate']);
   }
 
 }

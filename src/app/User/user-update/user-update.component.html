@@ -1,26 +1,26 @@
 <h2>Update User</h2>
 <div class="form-group">
     <label for="firstname">First Name</label>
-    <input type="text" class="form-control" />
+    <input type="text" class="form-control" [(ngModel)]= 'userService.updateUserCollection.firstName' required name="firstName"/>
 </div>
 <div class="form-group">
     <label for="lastname">Last Name</label>
-    <input type="text" class="form-control" />
+    <input type="text" class="form-control" [(ngModel)]= 'userService.updateUserCollection.lastName' required name="lastName"/>
 </div>
 <div class="form-group">
     <label for="email">Email</label>
-    <input type="text" class="form-control" />
+    <input type="text" class="form-control" [(ngModel)]= 'userService.updateUserCollection.email' required name="email"/>
 </div>
 <div class="form-group">
     <label for="password">Password</label>
-    <input type="password" class="form-control" />
+    <input type="password" class="form-control" type="password" [(ngModel)]= 'userService.updateUserCollection.firstName' required name="password"/>
 </div>
-<div class="form-group">
+<!-- <div class="form-group">
     <label for="confirmpassword">Confirm Password</label>
     <input type="password" class="form-control" />
-</div>
+</div> -->
 <div class="form-group">
-    <button class="btn btn-primary mr-sm-2">Update</button>
-    <button class="btn btn-danger mr-sm-2">Delete</button>
+    <button class="btn btn-primary mr-sm-2" (click)="onUserUpdate()">Update</button>
+    <button class="btn btn-danger mr-sm-2" (click)="onUserDelete(userService.updateUserCollection.id)">Delete</button>
     <button class="btn btn-secondary mr-sm-2" routerLink="../User">Cancel</button>
 </div>
