@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { UserServiceService } from '../user-service.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -11,10 +12,26 @@ import { UserServiceService } from '../user-service.service';
 })
 export class LoginComponent implements OnInit {
 
+  username : string; 
+    welcomeuser :string;
+
   constructor(private userService:UserServiceService,
     private router:Router) { }
-
-  ngOnInit(): void {
+    
+   ngOnInit(): void {
   }
+
+    onLogin(loginForm : NgForm)
+    {        
+      this.userService.login(loginForm.value).subscribe(
+         res=>{this.username =res.email; this.welcomeuser=res.firstName +" "+res.lastName;      
+         if(this.username != null)
+         {
+           localStorage.setItem('token',this.welcomeuser); 
+           this.router.navigate(['UserDetails']);
+         }
+        }       
+      );    
+    }
 
 }

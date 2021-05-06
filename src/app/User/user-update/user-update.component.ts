@@ -10,11 +10,28 @@ import { User } from '../user'
 })
 export class UserUpdateComponent implements OnInit {
 
-  constructor(private userService:UserServiceService,private router:Router) {
+  constructor(public userService:UserServiceService,private router:Router) {
   }
 
   ngOnInit(): void {
   }
 
+  onUserDelete(id : number)
+  {
+    this.userService.delete(id).subscribe(res=>
+      {
+        console.log('User deleted!');
+        this.router.navigate(['User']);
+    });    
 
+  }
+
+  onUserUpdate()
+  {
+    this.userService.update(this.userService.updateUserCollection).subscribe(res=>
+      {
+        console.log('User updated!');
+        this.router.navigate(['User']);
+    });
+  }
 }

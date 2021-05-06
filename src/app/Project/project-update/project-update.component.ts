@@ -10,10 +10,23 @@ import { Project } from '../project'
 })
 export class ProjectUpdateComponent implements OnInit {
 
-  constructor(private projectService:ProjectServiceService,private router:Router) {
+  constructor(public projectService: ProjectServiceService, private router: Router) {
   }
 
   ngOnInit(): void {
   }
+  onProjectDelete(id: number) {
+    this.projectService.delete(id).subscribe(res => {
+      console.log('Project deleted!');
+      this.router.navigate(['Project']);
+    });
 
+  }
+
+  onProjectUpdate() {
+    this.projectService.update(this.projectService.updateProjectCollection).subscribe(res => {
+      console.log('Project updated!');
+      this.router.navigate(['Project']);
+    });
+  }
 }

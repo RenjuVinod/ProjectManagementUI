@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserServiceService } from '../user-service.service';
+import { NgForm } from '@angular/forms';
 import { User } from '../user'
 
 @Component({
@@ -17,4 +18,12 @@ export class UserCreateComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onAddUser(userdata : NgForm)
+  {
+      this.userService.create(userdata.value).subscribe(res =>{ 
+        console.log('User created!')
+      this.router.navigate(['User']);
+    });
+      
+  }
 }

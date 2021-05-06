@@ -16,6 +16,7 @@ export class GenericServiceService<T> {
 
 
   create(body: T): Observable<T> {
+    console.log(body);
     return this.http.post<T>(this.apiUrl, body);
   }
 
@@ -28,9 +29,8 @@ export class GenericServiceService<T> {
     return this.http.get<T[]>(this.apiUrl);
   }
 
-  update(id: number, body: T): Observable<T> {
-    const url = this.entityUrl(id);
-    return this.http.put<T>(url, body);
+  update(body: T): Observable<T> {
+    return this.http.put<T>(this.apiUrl, body);
   }
 
   delete(id: number): Observable<T> {

@@ -12,7 +12,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let projects of projects;" (click)="onSelected(tasks)">
+            <tr *ngFor="let projects of projects;" (click)="onSelected(projects)">
                 
                 <td>{{ projects.id }}</td>
                 <td>{{ projects.name }}</td>
