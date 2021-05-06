@@ -23,12 +23,14 @@ export class LoginComponent implements OnInit {
 
     onLogin(loginForm : NgForm)
     {        
+      console.log(loginForm.value);
+
       this.userService.login(loginForm.value).subscribe(
          res=>{this.username =res.email; this.welcomeuser=res.firstName +" "+res.lastName;      
          if(this.username != null)
          {
            localStorage.setItem('token',this.welcomeuser); 
-           this.router.navigate(['UserDetails']);
+           this.router.navigate(['Home']);
          }
         }       
       );    

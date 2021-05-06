@@ -27,6 +27,10 @@ export class TaskCreateComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(!localStorage.getItem('token'))
+    {
+      this.router.navigate(['Login']);
+    }
     this.projectService.getAll().subscribe((data: Project[])=>{
       console.log(data);
       this.projects = data;
@@ -42,14 +46,19 @@ export class TaskCreateComponent implements OnInit {
     console.log(taskdata.value);
 
     var task=taskdata.value as Task;
+    task.projectID=parseInt(task.projectID.toString());
+    task.assignedToUserID=parseInt(task.assignedToUserID.toString());
     task.status=0;
     task.createdOn=new Date();
 
     console.log(task);
       this.taskService.create(task).subscribe(res =>{ 
+        console.log(res);
         console.log('Task created!')
       this.router.navigate(['Task']);
     });
       
   }
+
+
 }

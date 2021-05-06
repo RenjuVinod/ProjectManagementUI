@@ -16,6 +16,10 @@ export class TaskHomeComponent implements OnInit {
     }
 
   ngOnInit() {
+    if(!localStorage.getItem('token'))
+    {
+      this.router.navigate(['Login']);
+    }
     this.taskService.getAll().subscribe((data: Task[])=>{
       console.log(data);
       this.tasks = data;

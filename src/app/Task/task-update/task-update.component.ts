@@ -26,6 +26,10 @@ export class TaskUpdateComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(!localStorage.getItem('token'))
+    {
+      this.router.navigate(['Login']);
+    }
     this.projectService.getAll().subscribe((data: Project[])=>{
       console.log(data);
       this.projects = data;
@@ -46,6 +50,11 @@ export class TaskUpdateComponent implements OnInit {
   }
 
   onTaskUpdate() {
+
+    this.taskService.updateTaskCollection.projectID=parseInt(this.taskService.updateTaskCollection.projectID.toString());
+    this.taskService.updateTaskCollection.assignedToUserID=parseInt(this.taskService.updateTaskCollection.assignedToUserID.toString());
+    this.taskService.updateTaskCollection.status=parseInt(this.taskService.updateTaskCollection.status.toString());
+
     this.taskService.update(this.taskService.updateTaskCollection).subscribe(res => {
       console.log('Task updated!');
       this.router.navigate(['Task']);

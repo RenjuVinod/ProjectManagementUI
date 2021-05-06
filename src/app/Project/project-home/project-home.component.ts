@@ -16,6 +16,10 @@ export class ProjectHomeComponent implements OnInit {
     }
 
   ngOnInit() {
+    if(!localStorage.getItem('token'))
+    {
+      this.router.navigate(['Login']);
+    }
     this.projectService.getAll().subscribe((data: Project[])=>{
       console.log(data);
       this.projects = data;

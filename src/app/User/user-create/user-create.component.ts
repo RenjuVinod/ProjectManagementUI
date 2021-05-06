@@ -16,6 +16,10 @@ export class UserCreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(!localStorage.getItem('token'))
+    {
+      this.router.navigate(['Login']);
+    }
   }
 
   onAddUser(userdata : NgForm)

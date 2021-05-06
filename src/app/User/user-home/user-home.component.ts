@@ -16,6 +16,10 @@ export class UserHomeComponent implements OnInit {
     }
 
   ngOnInit() {
+    if(!localStorage.getItem('token'))
+    {
+      this.router.navigate(['Login']);
+    }
     this.userService.getAll().subscribe((data: User[])=>{
       console.log(data);
       this.users = data;

@@ -15,6 +15,7 @@ export class UserServiceService extends GenericServiceService<User>{
    }
 
    login(body: User): Observable<User> {
-    return this.http.post<User>(this.apiUrl+'/api/User/Login', body);
+     console.log(this.apiUrl);
+    return this.http.post<User>(this.apiUrl+'/Login', body);
   }
 }

@@ -1,8 +1,8 @@
 export class Task {
     id : number ;
-    projectID : number | null;
+    projectID : number;
     detail : string;
-    status : number | null;
-    assignedToUserID : number | null;
+    status : number;
+    assignedToUserID : number;
     createdOn : Date ;
 }
